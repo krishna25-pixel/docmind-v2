@@ -24,6 +24,16 @@ from src.pipeline.rag_pipeline import RAGPipeline
 from src.citations.formatter import format_context
 
 load_dotenv()
+
+# Bridge Streamlit Cloud secrets into os.environ
+try:
+    if hasattr(st, "secrets"):
+        for key in ["GROQ_API_KEY", "PINECONE_API_KEY"]:
+            if key in st.secrets and not os.environ.get(key):
+                os.environ[key] = str(st.secrets[key]).strip()
+except Exception:
+    pass
+
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
 PINECONE_API_KEY = os.environ.get("PINECONE_API_KEY")
 
