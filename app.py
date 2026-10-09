@@ -60,10 +60,17 @@ st.markdown("""
 
 html, body, [class*="css"] { font-family: 'Inter', sans-serif; }
 
+/* Hide Streamlit top-right elements (Fork, GitHub icon, MainMenu) */
+#MainMenu { visibility: hidden; }
+footer { visibility: hidden; }
+header [data-testid="stToolbar"] { display: none; visibility: hidden; }
+[data-testid="stToolbar"] { display: none; visibility: hidden; }
+.stDeployButton { display: none; }
+[data-testid="stHeader"] { background: transparent; }
+
 [data-testid="stAppViewContainer"] {
     background: radial-gradient(circle at 18% -10%, #151E33 0%, var(--bg) 55%);
 }
-[data-testid="stHeader"] { background: transparent; }
 [data-testid="stSidebar"] {
     background: var(--surface);
     border-right: 1px solid var(--border);
